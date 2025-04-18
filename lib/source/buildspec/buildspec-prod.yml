@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 22
+  build:
+    commands:
+      - npm install 
+      - npm run build
+      - if [ "$ENV" = "dev" ] || [ "$ENV" = "uat" ]; then npm run test; fi
+      - npx next export
+      - mv out out/$ENV
+  post_build:
+    commands:
+      - cd out/$ENV
+      - echo run aws
+      - aws s3 sync . $S3BUCKET --acl bucket-owner-full-control

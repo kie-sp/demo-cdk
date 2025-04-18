@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 22
+  build:
+    commands:
+      - npm install 
+      - npm run build:$ENV
+      - if [ "$ENV" = "dev" ] || [ "$ENV" = "uat" ]; then npm run test; fi
+  post_build:
+    commands:
+      - cd out
+      - echo run aws
+      - aws s3 sync --delete . $S3BUCKET

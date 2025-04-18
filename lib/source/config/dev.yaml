@@ -1,0 +1,48 @@
+stack_name: dev
+project_name: <project name>
+
+artifacts_bucket: <artifact bucket name>
+
+#S3 s3Bucket:
+s3Bucket:
+  is_existing: false
+  name: <bucket name>
+
+codebuild_iam_role: 
+  existing: true
+  role_name: arn:aws:iam::xxxxxx:role/<rolename>
+codebuild:
+  is_existing: false
+  name: <codebuild name>
+  description: codebuild web create from cdk  
+  build_source: source/buildspec/buildspec.yml
+repository:
+  owner: <owner name>
+  repo_name : <target repo name>
+
+codepipeline:
+  name: <codepipeline name>
+  description: Codepipeline for demo 
+  commit_stage:
+    name: source
+    action_name: source
+  build_stage:
+    name: build
+    action_name: build
+  s3bucket: s3://<bucket name>
+
+codestar_connection:
+  name: arn:aws:codeconnections:ap-southeast-1:xxxxxx:connection/<codestar connection>
+
+cloudfront:
+  description: cdk demo cloudfront
+  cache_policy:
+    name: <cache policy name>
+    description: cache web sp-test policy 
+
+notify_rule:
+  is_existing: false
+  notify_arn: arn:aws:codestar-notifications:ap-southeast-1:xxxx:notificationrule/<noti id>
+
+notification:
+  topic_arn: arn:aws:sns:ap-southeast-1:xxxx:<topic name>:<topic id>
