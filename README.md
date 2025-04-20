@@ -111,7 +111,7 @@ notify_rule:
 
 ---
 
-Built with ☕, 💪, and too many failed deployments...
+Built with ☕, 💪, 🧘‍♀️, 🎶 and too many failed deployments (I lost count)...
 
 Created by Kie SP
 
